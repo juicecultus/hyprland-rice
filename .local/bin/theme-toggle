@@ -1,0 +1,34 @@
+#!/bin/bash
+# Toggle between Tokyo Night and Catppuccin across the whole rice.
+set -e
+CFG="$HOME/.config"
+TH="$CFG/themes"
+WP="$HOME/Pictures/wallpapers"
+
+cur="$(cat "$TH/current" 2>/dev/null || echo tokyonight)"
+if [ "$cur" = "tokyonight" ]; then next="catppuccin"; else next="tokyonight"; fi
+src="$TH/$next"
+
+# copy themed files into place
+cp "$src/hypr/colors.conf"        "$CFG/hypr/colors.conf"
+cp "$src/hypr/hyprlock.conf"      "$CFG/hypr/hyprlock.conf"
+cp "$src/alacritty/alacritty.toml" "$CFG/alacritty/alacritty.toml"
+cp "$src/waybar/style.css"        "$CFG/waybar/style.css"
+cp "$src/wofi/style.css"          "$CFG/wofi/style.css"
+cp "$src/swaync/style.css"        "$CFG/swaync/style.css"
+
+# wallpaper — point wpaperd at the active theme's set (hot-reloads + fades)
+WPD="$CFG/wpaperd/config.toml"
+if [ -f "$WPD" ]; then
+    sed -i -E "s|^path = .*|path = \"$WP/$next\"|" "$WPD"
+    command -v wpaperctl >/dev/null 2>&1 && wpaperctl next >/dev/null 2>&1 || true
+fi
+
+echo "$next" > "$TH/current"
+
+# live reloads
+hyprctl reload >/dev/null 2>&1 || true
+swaync-client --reload-css >/dev/null 2>&1 || true
+pkill -SIGUSR2 waybar 2>/dev/null || true   # waybar reloads css on SIGUSR2
+
+command -v notify-send >/dev/null 2>&1 && notify-send "Theme" "Switched to $next" || true

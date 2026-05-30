@@ -1,0 +1,79 @@
+{
+    "$schema": "/etc/xdg/swaync/configSchema.json",
+    "positionX": "right",
+    "positionY": "top",
+    "layer": "overlay",
+    "control-center-layer": "top",
+    "layer-shell": true,
+    "cssPriority": "user",
+    "control-center-margin-top": 10,
+    "control-center-margin-bottom": 10,
+    "control-center-margin-right": 10,
+    "control-center-margin-left": 10,
+    "notification-icon-size": 48,
+    "notification-body-image-height": 120,
+    "notification-body-image-width": 320,
+    "timeout": 5,
+    "timeout-low": 3,
+    "timeout-critical": 0,
+    "fit-to-screen": true,
+    "relative-timestamps": true,
+    "control-center-width": 400,
+    "control-center-height": 720,
+    "notification-window-width": 380,
+    "keyboard-shortcuts": true,
+    "image-visibility": "when-available",
+    "transition-time": 200,
+    "hide-on-clear": true,
+    "hide-on-action": true,
+    "script-fail-notify": true,
+    "widgets": [
+        "title",
+        "dnd",
+        "mpris",
+        "buttons-grid",
+        "notifications"
+    ],
+    "widget-config": {
+        "title": {
+            "text": "Notifications",
+            "clear-all-button": true,
+            "button-text": "Clear all"
+        },
+        "dnd": {
+            "text": "Do Not Disturb"
+        },
+        "mpris": {
+            "image-size": 90,
+            "image-radius": 10
+        },
+        "buttons-grid": {
+            "actions": [
+                {
+                    "label": "󰌾",
+                    "command": "loginctl lock-session"
+                },
+                {
+                    "label": "󰄄",
+                    "command": "grim -g \"$(slurp)\" - | wl-copy"
+                },
+                {
+                    "label": "󰔎",
+                    "command": "~/.local/bin/theme-toggle"
+                },
+                {
+                    "label": "󰜉",
+                    "command": "hyprctl reload"
+                },
+                {
+                    "label": "󰑓",
+                    "command": "systemctl reboot"
+                },
+                {
+                    "label": "󰐥",
+                    "command": "systemctl poweroff"
+                }
+            ]
+        }
+    }
+}

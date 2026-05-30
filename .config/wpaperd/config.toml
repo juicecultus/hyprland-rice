@@ -1,0 +1,8 @@
+# wpaperd — cycles the active theme's wallpaper set with a fade transition.
+# theme-toggle rewrites the `path` line below; wpaperd hot-reloads it.
+[any]
+path = "/home/justin/Pictures/wallpapers/tokyonight"
+duration = "15m"
+sorting = "random"
+mode = "stretch"
+transition-time = 800

@@ -1,0 +1,15 @@
+#!/bin/bash
+# wofi power menu — Tokyo Night (styled via ~/.config/wofi/power.css)
+chosen=$(printf "    Lock\n    Suspend\n    Logout\n    Reboot\n    Shutdown" \
+    | wofi --dmenu --prompt "" \
+        --style "$HOME/.config/wofi/power.css" \
+        --width 240 --height 320 \
+        --hide-scroll --no-actions \
+        --cache-file /dev/null)
+case "$chosen" in
+    *Lock)     loginctl lock-session ;;
+    *Suspend)  systemctl suspend ;;
+    *Logout)   hyprctl dispatch exit ;;
+    *Reboot)   systemctl reboot ;;
+    *Shutdown) systemctl poweroff ;;
+esac

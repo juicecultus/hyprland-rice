@@ -1,0 +1,44 @@
+# Alacritty — Tokyo Night (Omarchy-style)
+[window]
+padding = { x = 14, y = 14 }
+decorations = "none"
+opacity = 0.95
+dynamic_padding = true
+
+[font]
+size = 11.0
+normal = { family = "CaskaydiaCove Nerd Font Mono", style = "Regular" }
+bold   = { family = "CaskaydiaCove Nerd Font Mono", style = "Bold" }
+italic = { family = "CaskaydiaCove Nerd Font Mono", style = "Italic" }
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+
+# ---- Tokyo Night colors ----
+[colors.primary]
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[colors.normal]
+black   = "#15161e"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#a9b1d6"
+
+[colors.bright]
+black   = "#414868"
+red     = "#f7768e"
+green   = "#9ece6a"
+yellow  = "#e0af68"
+blue    = "#7aa2f7"
+magenta = "#bb9af7"
+cyan    = "#7dcfff"
+white   = "#c0caf5"
+
+[colors.selection]
+background = "#283457"
+foreground = "#c0caf5"

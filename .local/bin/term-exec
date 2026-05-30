@@ -1,0 +1,5 @@
+#!/bin/bash
+# Wrapper so launchers (wofi) can run Terminal=true apps in alacritty.
+# wofi invokes the configured term as: term-exec <command> [args...]
+# alacritty needs the command after -e, so inject it here.
+exec alacritty --class term-float -e "$@"
