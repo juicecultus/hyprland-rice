@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Volume control with audible feedback. Steps the default sink and plays the
+# freedesktop "audio-volume-change" click — its loudness tracks the new level,
+# so you hear how loud you've set things. Bound to the F11/F12 volume keys.
+set -euo pipefail
+
+SINK=@DEFAULT_AUDIO_SINK@
+STEP=5
+
+case "${1:-}" in
+    up)   wpctl set-mute "$SINK" 0 2>/dev/null || true
+          wpctl set-volume -l 1.0 "$SINK" "${STEP}%+" ;;
+    down) wpctl set-mute "$SINK" 0 2>/dev/null || true
+          wpctl set-volume -l 1.0 "$SINK" "${STEP}%-" ;;
+    mute) wpctl set-mute "$SINK" toggle ;;
+    *)    echo "usage: volume-ctl {up|down|mute}" >&2; exit 1 ;;
+esac
+
+# Play the feedback click, but not while muted (no point clicking into silence).
+if ! wpctl get-volume "$SINK" | grep -q MUTED; then
+    canberra-gtk-play -i audio-volume-change >/dev/null 2>&1 &
+fi

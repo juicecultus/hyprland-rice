@@ -36,6 +36,7 @@ cat <<'PKGS'
   hyprland hypridle hyprlock hyprpicker xdg-desktop-portal-hyprland
   waybar wofi swaync wpaperd alacritty cava satty grim slurp
   cliphist wl-clipboard brightnessctl playerctl pamixer
+  libcanberra sound-theme-freedesktop
   thunar polkit hyprpolkitagent ttf-cascadia-code-nerd
   noto-fonts noto-fonts-emoji capitaine-cursors qt6ct
 Install with:  sudo pacman -S <list above>
