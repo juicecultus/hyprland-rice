@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Keybind cheatsheet for the Hyprland rice. Bound to Super(⌘)+/.
+# Curated + searchable via wofi (type to filter, Esc to close).
+# On a MacBook the Super key is the ⌘ Command key.
+
+# Already open? toggle off.
+if pgrep -x wofi >/dev/null && [ -f /tmp/.keybinds-wofi ]; then
+    pkill -x wofi
+    rm -f /tmp/.keybinds-wofi
+    exit 0
+fi
+
+list() {
+cat <<'EOF'
+──  Windows  ──
+⌘ ←/→/↑/↓  ·  H/J/K/L        Move focus between windows
+⌘ ⇧ ←/→/↑/↓                  Move the window
+⌘ Q                          Close window
+⌘ F                          Fullscreen
+⌘ V                          Toggle floating
+⌘ T                          Toggle split direction
+⌘ + drag (trackpad)          Move a floating window
+──  Workspaces  ──
+⌘ 1 … 0                      Go to workspace 1–10
+⌘ ⇧ 1 … 0                    Send window to workspace
+⌘ two-finger scroll          Cycle workspaces
+──  Launch  ──
+⌘ Return                     Terminal
+⌘ Space                      App launcher
+⌘ B                          Browser (Firefox)
+⌘ E                          Files (Thunar)
+⌘ M                          System monitor (btop)
+⌘ A                          Audio visualizer (cava)
+⌘ C                          Clipboard history
+⌘ L                          Lock screen
+⌘ ⇧ Q                        Exit Hyprland
+──  Notifications  ──
+⌘ N                          Toggle notification panel
+⌘ ⇧ N                        Do-not-disturb
+──  Screenshot / Tools  ──
+⌘ ⇧ S                        Region screenshot → clipboard
+⌘ ⇧ P                        Region screenshot → file
+⌘ ⇧ A                        Annotate region (satty)
+⌘ ⇧ C                        Color picker
+⌘ ⇧ T                        Toggle theme (Tokyo ⇄ Catppuccin)
+──  Media / Function keys  ──
+F12 / F11                    Volume up / down (with click)
+Brightness keys              Backlight up / down
+⌘ /                          Show this cheatsheet
+EOF
+}
+
+touch /tmp/.keybinds-wofi
+list | wofi --dmenu --prompt "Keybinds" \
+    --style "$HOME/.config/wofi/cheatsheet.css" \
+    --width 640 --height 760 \
+    --cache-file /dev/null >/dev/null
+rm -f /tmp/.keybinds-wofi

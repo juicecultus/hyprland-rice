@@ -22,6 +22,7 @@ a MacBook10,1 (12-inch 2017, retina panel @ 2x scale). Stock repos only — no A
 | `.local/bin/term-exec` | Launcher shim to run TUI apps in alacritty |
 | `.local/bin/battery-status` | waybar custom battery module (instant plug/unplug via udev) |
 | `.local/bin/volume-ctl` | volume keys (F11/F12) with audible click feedback |
+| `.local/bin/keybinds` | on-screen keybind cheatsheet (Super+/) |
 | `home/.bash_profile` | Auto-starts Hyprland on tty1 via `start-hyprland` |
 | `wallpapers/` | Wallpaper sets → installed to `~/Pictures/wallpapers` |
 
@@ -60,6 +61,7 @@ sudo systemctl edit getty@tty1
 | `N` notifications · `Shift+N` do-not-disturb |
 | `Shift+S` region screenshot · `Shift+A` annotate (satty) · `Shift+C` color picker |
 | `Shift+T` toggle Tokyo Night ⇄ Catppuccin |
+| `/` on-screen keybind cheatsheet |
 
 ## Notes
 

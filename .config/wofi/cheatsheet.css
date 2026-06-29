@@ -1,0 +1,37 @@
+/* wofi keybind cheatsheet — Tokyo Night */
+window {
+    margin: 0;
+    background-color: rgba(22, 22, 30, 0.97);
+    border: 2px solid #7aa2f7;
+    border-radius: 16px;
+    font-family: "CaskaydiaCove Nerd Font", "Symbols Nerd Font", monospace;
+}
+
+#input {
+    margin: 12px 12px 4px 12px;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 10px;
+    background: #1a1b26;
+    color: #c0caf5;
+    font-size: 15px;
+}
+
+#outer-box { margin: 6px 12px 12px 12px; }
+#scroll { margin: 0; }
+#inner-box { margin: 0; }
+
+#entry {
+    padding: 3px 12px;
+    margin: 1px;
+    border-radius: 8px;
+    color: #c0caf5;
+    font-size: 15px;
+}
+
+#entry:selected {
+    background: rgba(122, 162, 247, 0.18);
+    color: #c0caf5;
+}
+
+#text { margin: 0 6px; }
