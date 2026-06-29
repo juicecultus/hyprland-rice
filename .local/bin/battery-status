@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# Waybar custom battery module — reads sysfs directly so a udev RTMIN+8 poke
+# makes it react instantly to plug/unplug. Emits JSON for waybar.
+set -euo pipefail
+
+BAT=/sys/class/power_supply/BAT0
+ADP=/sys/class/power_supply/ADP1
+
+cap=$(cat "$BAT/capacity" 2>/dev/null || echo 0)
+status=$(cat "$BAT/status" 2>/dev/null || echo Unknown)
+online=$(cat "$ADP/online" 2>/dev/null || echo 0)
+
+# Nerd-font glyphs via \u escapes (ASCII source: no PUA stripping).
+charging=$''   # bolt
+plugged=$''    # plug
+icons=($'' $'' $'' $'' $'')  # empty -> full
+
+idx=$(( cap / 20 ))
+(( idx > 4 )) && idx=4
+icon="${icons[$idx]}"
+
+class=""
+if [ "$status" = "Charging" ]; then
+    icon="$charging"
+    class="charging"
+elif [ "$online" = "1" ] && { [ "$status" = "Full" ] || [ "$status" = "Not charging" ]; }; then
+    icon="$plugged"
+    class="plugged"
+else
+    if   (( cap <= 15 )); then class="critical"
+    elif (( cap <= 30 )); then class="warning"
+    fi
+fi
+
+tip="$status — ${cap}%"
+tip=$(printf '%b' "$tip")
+printf '{"text":"%s  %s%%","class":"%s","percentage":%s,"tooltip":"%s"}\n' \
+    "$icon" "$cap" "$class" "$cap" "$tip"

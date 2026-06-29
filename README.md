@@ -20,6 +20,7 @@ a MacBook10,1 (12-inch 2017, retina panel @ 2x scale). Stock repos only — no A
 | `.local/bin/theme-toggle` | One-key full-rice theme switch (Super+Shift+T) |
 | `.local/bin/powermenu` | Graphical power menu (wofi) |
 | `.local/bin/term-exec` | Launcher shim to run TUI apps in alacritty |
+| `.local/bin/battery-status` | waybar custom battery module (instant plug/unplug via udev) |
 | `home/.bash_profile` | Auto-starts Hyprland on tty1 via `start-hyprland` |
 | `wallpapers/` | Wallpaper sets → installed to `~/Pictures/wallpapers` |
 
@@ -62,6 +63,12 @@ sudo systemctl edit getty@tty1
 ## Notes
 
 - Display is scaled `2x` (`monitor = eDP-1, preferred, auto, 2`).
+- The battery indicator is a custom module (`battery-status`) so it keeps the
+  exact Font Awesome glyphs. For *instant* plug/unplug reaction it relies on a
+  `power_supply` udev rule that pokes waybar with `SIGRTMIN+8`; that rule ships
+  in **[macbook-arch-system](https://github.com/juicecultus/macbook-arch-system)**
+  (`99-waybar-battery.rules`). Without it the module still updates on its 30s
+  poll fallback.
 - System-level MacBook tweaks (touchpad palm rejection, power-profile
   auto-switch, ambient brightness) live in a separate repo:
   **[macbook-arch-system](https://github.com/juicecultus/macbook-arch-system)**.

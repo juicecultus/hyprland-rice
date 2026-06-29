@@ -28,6 +28,7 @@ window#waybar {
 #backlight,
 #custom-network,
 #battery,
+#custom-battery,
 #custom-notification,
 #custom-power {
     padding: 0 10px;
@@ -63,11 +64,11 @@ window#waybar {
 #pulseaudio { color: #7dcfff; }
 #backlight { color: #e0af68; }
 #custom-network { color: #9ece6a; }
-#battery { color: #bb9af7; }
+#battery, #custom-battery { color: #bb9af7; }
 
-#battery.charging { color: #9ece6a; }
-#battery.warning:not(.charging) { color: #ff9e64; }
-#battery.critical:not(.charging) {
+#battery.charging, #custom-battery.charging { color: #9ece6a; }
+#battery.warning:not(.charging), #custom-battery.warning:not(.charging) { color: #ff9e64; }
+#battery.critical:not(.charging), #custom-battery.critical:not(.charging) {
     color: #f7768e;
     animation: blink 1s steps(2) infinite;
 }

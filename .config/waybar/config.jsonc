@@ -9,7 +9,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["tray", "pulseaudio", "backlight", "custom/network", "battery", "custom/notification", "custom/power"],
+    "modules-right": ["tray", "pulseaudio", "backlight", "custom/network", "custom/battery", "custom/notification", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -58,15 +58,13 @@
         "on-click-right": "nm-connection-editor"
     },
 
-    "battery": {
-        "interval": 5,
-        "bat": "BAT0",
-        "adapter": "ADP1",
-        "states": { "warning": 30, "critical": 15 },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "  {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+    "custom/battery": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.local/bin/battery-status",
+        "interval": 30,
+        "signal": 8,
+        "tooltip": true
     },
 
     "custom/notification": {
